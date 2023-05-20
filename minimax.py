@@ -53,4 +53,42 @@ def make_move(board, column, player):
 
 
 # Evaluate the board
+def evaluate_board(board):
+    # Check rows
+    for i in range(6):
+        for j in range(4):
+            if board[i][j] == board[i][j + 1] == board[i][j + 2] == board[i][j + 3]:
+                if board[i][j] == RED:
+                    return WIN_SCORE
+                elif board[i][j] == BLUE:
+                    return -WIN_SCORE
 
+    # Check columns
+    for i in range(3):
+        for j in range(7):
+            if board[i][j] == board[i + 1][j] == board[i + 2][j] == board[i + 3][j]:
+                if board[i][j] == RED:
+                    return WIN_SCORE
+                elif board[i][j] == BLUE:
+                    return -WIN_SCORE
+
+    # Check diagonal (left to right)
+    for i in range(3):
+        for j in range(4):
+            if board[i][j] == board[i + 1][j + 1] == board[i + 2][j + 2] == board[i + 3][j + 3]:
+                if board[i][j] == RED:
+                    return WIN_SCORE
+                elif board[i][j] == BLUE:
+                    return -WIN_SCORE
+
+    # Check diagonal (right to left)
+    for i in range(3):
+        for j in range(3, 7):
+            if board[i][j] == board[i + 1][j - 1] == board[i + 2][j - 2] == board[i + 3][j - 3]:
+                if board[i][j] == RED:
+                    return WIN_SCORE
+                elif board[i][j] == BLUE:
+                    return -WIN_SCORE
+
+    # No winner
+    return 0
