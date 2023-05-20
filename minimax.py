@@ -38,11 +38,18 @@ def minimax(board, depth, maximizingPlayer):
 
 
 # Check if the move is valid
-
+def is_valid_move(board, column):
+    return board[0][column] == EMPTY
 
 
 # Make a move on the board
-
+def make_move(board, column, player):
+    new_board = [row[:] for row in board]
+    for i in range(5, -1, -1):
+        if new_board[i][column] == EMPTY:
+            new_board[i][column] = player
+            break
+    return new_board
 
 
 # Evaluate the board
