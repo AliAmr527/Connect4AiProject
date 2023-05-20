@@ -61,3 +61,15 @@ def alphabetapruning(board, depth, alpha, beta, maximizingPlayer):
                     return WIN_SCORE
                 elif board[i][j] == BLUE:
                     return -WIN_SCORE
+
+    # Check diagonal (right to left)
+    for i in range(3):
+        for j in range(3, 7):
+            if board[i][j] == board[i + 1][j - 1] == board[i + 2][j - 2] == board[i + 3][j - 3]:
+                if board[i][j] == RED:
+                    return WIN_SCORE
+                elif board[i][j] == BLUE:
+                    return -WIN_SCORE
+
+    # No winner
+    return 0
